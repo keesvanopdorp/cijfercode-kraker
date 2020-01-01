@@ -1,0 +1,14 @@
+.footer{
+    background-color: white;
+    width: 100vw;
+    height: 10vh;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    h3 {
+        text-align: center;
+    }
+}
