@@ -9,7 +9,7 @@ export class WordService {
   constructor(private http: HttpClient) { }
 
   getWordList() {
-    this.http.get<any>('/assets/dutch.json' , {responseType: 'json'}).subscribe(data => {
+    this.http.get<any>('assets/dutch.json' , {responseType: 'json'}).subscribe(data => {
       this.words = data;
     });
   }
