@@ -28,13 +28,14 @@ export class AppComponent implements OnInit {
   }
 
   submitHandler() {
-    let str = this.letterForm.value.value;
+    const str = this.letterForm.value.value;
     let count = 0;
     let regex: string | RegExp = '^';
     let previousChar = '';
+    console.log(`string: ${str.length}`);
     for (let i = 0; i < str.length; i++) {
       if (str.charAt(i) !== '*') {
-        if (previousChar === '*') {
+        if (previousChar === '*' ) {
           regex += `{${count}}`;
           regex += str.charAt(i);
           previousChar = '';
@@ -53,8 +54,15 @@ export class AppComponent implements OnInit {
         }
       }
     }
+    if (str.charAt(str.length - 2) !== '}' && previousChar === '*') {
+      regex += `{${count}}`;
+    }
     regex += '$';
     regex = new RegExp(regex);
     this.words = this.wordService.filter(regex);
+  }
+
+  resetLetterForm() {
+    this.letterForm.reset();
   }
 }

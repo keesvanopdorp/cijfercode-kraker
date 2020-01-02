@@ -11,7 +11,6 @@ export class WordService {
   getWordList() {
     this.http.get<any>('/assets/dutch.json' , {responseType: 'json'}).subscribe(data => {
       this.words = data;
-      console.log(this.words);
     });
   }
 
