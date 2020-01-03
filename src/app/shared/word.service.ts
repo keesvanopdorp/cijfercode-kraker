@@ -14,13 +14,34 @@ export class WordService {
     });
   }
 
-  filter(regex: any) {
+  filter(regex: any, similarities: any) {
+    console.log(similarities);
     const potentialWords = [];
     console.log(regex);
     for (const prop in this.words) {
-      if (this.words[prop].match(regex)) {
-        potentialWords.push(this.words[prop]);
-        console.log(this.words[prop]);
+      const word = this.words[prop];
+      if (word.match(regex)) {
+        let similar = false;
+        let fails = 0;
+        if (similarities.length !== 0) {
+          console.log('niet 0');
+          for (let i = 0; i < similarities.length; i++) {
+            const first = word.charAt(similarities[i].first - 1);
+            const second = word.charAt(similarities[i].second - 1);
+            if (first !== second){
+              fails++;
+            }
+          }
+          similar = fails !== similarities.length;
+          console.log(similar);
+        } else {
+          similar = true;
+          console.log(similar);
+        }
+        if (similar === true) {
+          potentialWords.push(word);
+          console.log(word);
+        }
       }
     }
     return potentialWords;

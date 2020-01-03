@@ -3,7 +3,7 @@ import {
   FormBuilder,
   FormGroup,
   Validators,
-  FormControl
+  FormArray
 } from '@angular/forms';
 
 import {WordService} from './shared/word.service';
@@ -22,12 +22,14 @@ export class AppComponent implements OnInit {
     this.letterForm = this.fb.group({
      value: ['', [
        Validators.required
-     ]]
+     ]],
+    similarities: this.fb.array([])
     });
     this.wordService.getWordList();
   }
 
   submitHandler() {
+    console.log(this.letterForm.value);
     const str = this.letterForm.value.value;
     let count = 0;
     let regex: string | RegExp = '^';
@@ -59,10 +61,32 @@ export class AppComponent implements OnInit {
     }
     regex += '$';
     regex = new RegExp(regex);
-    this.words = this.wordService.filter(regex);
+    this.words = this.wordService.filter(regex, this.letterForm.value.similarities);
   }
 
-  resetLetterForm() {
-    this.letterForm.reset();
+  get similarityForms() {
+    return this.letterForm.get('similarities') as FormArray;
+  }
+
+  addSimilarity() {
+    const similarity = this.fb.group({
+      first: ['', [
+        Validators.required,
+        Validators.pattern(/^[0-9]{1,2}$/)
+      ]],
+      second: ['', [
+        Validators.required,
+        Validators.pattern(/^[0-9]{1,2}$/)
+      ]]
+    });
+    this.similarityForms.push(similarity);
+  }
+
+  removeSimilarity(index) {
+    this.similarityForms.removeAt(index);
+  }
+
+  resetWords() {
+    this.words = [];
   }
 }
