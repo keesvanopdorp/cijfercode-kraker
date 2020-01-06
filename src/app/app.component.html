@@ -4,7 +4,9 @@
   <p class="text-center">
     Met deze app kan je puzzelen makkelijker maken, vooral cijfer code.
     <br>
-    vul een * in voor de letters die je niet weet
+    vul een * in voor de letters die je niet weet. Ook kan je invullen welke vakjes gelijk letters moeten hebben door op voeg gelijkenis toevoegen te drukken.
+    <br>
+    Dan vul je in het eerste en tweede veld in ondergelijkenissen welke vakjes gelijk moeten zijn
   </p>
   <form class="mt-5" [formGroup]="this.letterForm" (submit)="submitHandler()">
     <h3 class="text-center my-3">Woord Raden</h3>
@@ -24,13 +26,13 @@
             <input type="text" class="form-control" formControlName="second">
           </div>
           <div class="col-2">
-            <button type="button" class="btn btn-danger" (click)="removeSimilarity(i)">Verwijder</button>
+            <button type="button" class="btn btn-danger" (click)="removeSimilarity(i)">Verwijderen</button>
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-sm-12 offset-md-6 offset-sm-2 mt-5">
+      <div class="col-md-8 col-sm-12 offset-md-6 offset-sm-0 mt-5">
         <button type="submit" class="btn btn-primary" [disabled]="letterForm.invalid">Submit</button>
-        <button type="reset" class="btn btn-secondary">Reset</button>
+        <button type="reset" (click)="resetForm()" class="btn btn-secondary">Reset</button>
         <button type="button" (click)="addSimilarity()" class="btn btn-dark">Voeg gelijkenis toe</button>
         <button type="button" class="btn btn-danger" (click)="resetWords()">Verwijder woorden</button>
       </div>

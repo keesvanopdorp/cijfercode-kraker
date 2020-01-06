@@ -21,7 +21,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.letterForm = this.fb.group({
      value: ['', [
-       Validators.required
+       Validators.required,
+       Validators.minLength(2)
      ]],
     similarities: this.fb.array([])
     });
@@ -61,7 +62,8 @@ export class AppComponent implements OnInit {
     }
     regex += '$';
     regex = new RegExp(regex);
-    this.words = this.wordService.filter(regex, this.letterForm.value.similarities);
+    this.wordService.similarities = this.letterForm.value.similarities;
+    this.words = this.wordService.filter(regex);
   }
 
   get similarityForms() {
@@ -88,5 +90,9 @@ export class AppComponent implements OnInit {
 
   resetWords() {
     this.words = [];
+  }
+
+  resetForm() {
+    this.similarityForms.controls = [];
   }
 }
