@@ -95,4 +95,8 @@ export class AppComponent implements OnInit {
   resetForm() {
     this.similarityForms.controls = [];
   }
+
+  get value() {
+    return this.letterForm.get('value');
+  }
 }

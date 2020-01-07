@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
-    "start-dev": "ng server -o",
+    "start-dev": "ng serve -o --port=80",
     "build": "ng build --prod --output-path docs --base-href /cijfercode-kraker/",
     "test": "ng test",
     "lint": "ng lint",

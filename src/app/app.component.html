@@ -9,13 +9,16 @@
     Dan vul je in het eerste en tweede veld in ondergelijkenissen welke vakjes gelijk moeten zijn
   </p>
   <form class="mt-5" [formGroup]="this.letterForm" (submit)="submitHandler()">
-    <h3 class="text-center my-3">Woord Raden</h3>
+    <h3 class="text-center my-3">Woord Raden: </h3>
     <div class="row">
       <div class="col-8 offset-2">
         <input formControlName="value" type="text" class="form-control">
       </div>
+      <div class="col-12" *ngIf="value.invalid && value.touched">
+        <h3 class="text-center text-danger">Je bent vergeten iets in te vullen</h3>
+      </div>
     </div>
-    <h3 class="text-center my-2">Gelijkenissen</h3>
+    <h3 class="text-center my-2">Gelijkenissen: </h3>
     <div class="row" formArrayName="similarities">
       <div class="col-8 offset-2" *ngFor="let similarity of similarityForms.controls; let i =index" [formGroupName]="i">
         <div class="row">
@@ -42,5 +45,5 @@
     <ul class="mx-auto">
       <li class="text-monospace" *ngFor="let word of words">{{word}}</li>
     </ul>
-  <app-footer></app-footer>
 </div>
+<app-footer></app-footer>
