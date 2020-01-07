@@ -5,11 +5,11 @@
     "ng": "ng",
     "start": "node server.js",
     "start-dev": "ng server -o",
-    "build": "ng build --prod --output-path docs --base-href /cijfercode-kraker/",
+    "build": "ng build --prod --output-path docs --base-href /",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "heroku-postbuild": "ng build --prod --output-path docs --base-href /cijfercode-kraker/"
+    "heroku-postbuild": ":"
   },
   "private": true,
   "dependencies": {
