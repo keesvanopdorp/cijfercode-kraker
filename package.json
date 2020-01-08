@@ -1,6 +1,7 @@
 {
   "name": "cijfercode-kraker",
   "version": "0.0.0",
+  "author": "Kees van Opdorp",
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
