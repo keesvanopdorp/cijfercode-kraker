@@ -63,6 +63,7 @@ export class AppComponent implements OnInit {
     regex += '$';
     regex = new RegExp(regex);
     this.wordService.similarities = this.letterForm.value.similarities;
+    this.words = [];
     this.words = this.wordService.filter(regex);
   }
 

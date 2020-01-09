@@ -69,17 +69,21 @@ export class WordService {
 
   checkSimilarities(word: string) {
     let similar = false;
+    let values = [];
     const similaritiesLength = this.similarities.length;
     if (similaritiesLength !== 0) {
       for (let i = 0; i < similaritiesLength; i++) {
         const firstValue = this.similarities[i].first - 1;
         const secondValue = this.similarities[i].second - 1;
-        const firstLetter = word.charAt(firstValue);
-        const secondLetter = word.charAt(secondValue);
+        const firstLetter = word.charAt(firstValue).toString();
+        const secondLetter = word.charAt(secondValue).toString();
         console.log(secondLetter);
         console.log(firstLetter);
-        similar = firstLetter === secondLetter;
+        values.push(firstLetter === secondLetter);
+        console.log(`perviousValue: ${values}`);
       }
+      const checker = arr => arr.every(Boolean);
+      similar = checker(values);
     } else {
       similar = true;
     }
