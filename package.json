@@ -1,6 +1,6 @@
 {
   "name": "cijfercode-kraker",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "author": "Kees van Opdorp",
   "description": "with this app you can make word puzzles much easier for your self",
   "scripts": {
@@ -22,7 +22,9 @@
     "@angular/forms": "~8.2.7",
     "@angular/platform-browser": "~8.2.7",
     "@angular/platform-browser-dynamic": "~8.2.7",
+    "@angular/pwa": "^0.803.22",
     "@angular/router": "~8.2.7",
+    "@angular/service-worker": "^8.2.14",
     "@fortawesome/fontawesome-free": "^5.12.0",
     "bootstrap": "^4.4.1",
     "express": "^4.17.1",
