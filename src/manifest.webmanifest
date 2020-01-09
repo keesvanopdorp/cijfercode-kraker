@@ -1,11 +1,11 @@
 {
-  "name": "cijfercode-kraker",
-  "short_name": "cijfercode-kraker",
+  "name": "cijfercode kraker",
+  "short_name": "cijfercode kraker",
   "theme_color": "#87CEEB",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "/",
-  "start_url": "https://cijfercode-kraker.herokuapp.com/",
+  "start_url": "https://cijfercode-kraker.herokuapp.com",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",

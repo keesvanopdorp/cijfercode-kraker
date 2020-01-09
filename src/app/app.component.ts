@@ -21,15 +21,14 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.letterForm = this.fb.group({
      value: ['', [
-       Validators.required,
-       Validators.minLength(2)
+       Validators.required
      ]],
     similarities: this.fb.array([])
     });
     this.wordService.getWordList();
   }
 
-  submitHandler() {
+  submitHandler(): void {
     console.log(this.letterForm.value);
     const str = this.letterForm.value.value;
     let count = 0;
@@ -71,15 +70,17 @@ export class AppComponent implements OnInit {
     return this.letterForm.get('similarities') as FormArray;
   }
 
-  addSimilarity() {
+  addSimilarity(): void {
     const similarity = this.fb.group({
       first: ['', [
         Validators.required,
-        Validators.pattern(/^[0-9]{1,2}$/)
+        Validators.pattern(/^[0-9]{1,2}$/),
+        Validators.min(0)
       ]],
       second: ['', [
         Validators.required,
-        Validators.pattern(/^[0-9]{1,2}$/)
+        Validators.pattern(/^[0-9]{1,2}$/),
+        Validators.min(0)
       ]]
     });
     this.similarityForms.push(similarity);
@@ -89,12 +90,12 @@ export class AppComponent implements OnInit {
     this.similarityForms.removeAt(index);
   }
 
-  resetWords() {
+  resetWords(): void {
     this.words = [];
   }
 
-  resetForm() {
-    this.similarityForms.controls = [];
+  resetValue(): void {
+    this.letterForm.value.value = '';
   }
 
   get value() {
