@@ -2,11 +2,11 @@
   <h1 class="text-center mt-5 display-3">Cijfercode kraker</h1>
   <h2 class="text-center">Uitleg: </h2>
   <p class="text-center">
-    Met deze app kan je puzzelen makkelijker maken, vooral cijfer code.
+    Met deze app kun je puzzelen makkelijker maken, vooral cijfer code.
     <br>
     vul een * in voor de letters die je niet weet. Ook kan je invullen welke vakjes gelijk letters moeten hebben door op voeg gelijkenis toevoegen te drukken.
     <br>
-    Dan vul je in het eerste en tweede veld in ondergelijkenissen welke vakjes gelijk moeten zijn
+    Dan vul je in het eerste en tweede veld in ondergelijkenissen welke vakjes gelijk moeten zijn.
   </p>
   <form class="mt-5" [formGroup]="this.letterForm" (submit)="submitHandler()">
     <h3 class="text-center my-3">Woord Raden: </h3>
@@ -40,7 +40,7 @@
       </div>
       <div class="col-md-4 col-sm-12 offset-md-4 offset-sm-0 mt-3">
         <button type="button" (click)="addSimilarity()" class="btn btn-dark">Voeg gelijkenis toe</button>
-        <button type="button" class="btn btn-danger" [disabled]="!(this.words == 0)" (click)="resetWords()">Verwijder woorden</button>
+        <button type="button" class="btn btn-danger" [disabled]="this.words === undefined" (click)="resetWords()">Verwijder woorden</button>
       </div>
       <div class="col-4 offset-4 mt-5">
         <button type="submit" class="btn btn-primary btn-block" [disabled]="letterForm.invalid">Submit</button>

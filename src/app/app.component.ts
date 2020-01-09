@@ -15,7 +15,7 @@ import {WordService} from './shared/word.service';
 })
 export class AppComponent implements OnInit {
   letterForm: FormGroup;
-  words: any;
+  words: any[];
   constructor(private fb: FormBuilder, private wordService: WordService) {}
 
   ngOnInit(): void {
@@ -62,7 +62,8 @@ export class AppComponent implements OnInit {
     regex += '$';
     regex = new RegExp(regex);
     this.wordService.similarities = this.letterForm.value.similarities;
-    this.words = [];
+    this.letterForm.value.value = '';
+    this.words = undefined;
     this.words = this.wordService.filter(regex);
   }
 
@@ -91,7 +92,7 @@ export class AppComponent implements OnInit {
   }
 
   resetWords(): void {
-    this.words = [];
+    this.words = undefined;
   }
 
   resetValue(): void {
