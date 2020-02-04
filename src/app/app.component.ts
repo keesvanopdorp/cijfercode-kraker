@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -13,38 +13,18 @@ import {WordService} from './shared/word.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterContentInit {
+export class AppComponent implements OnInit {
   letterForm: FormGroup;
-  trigger: boolean;
   words: any[];
   constructor(private fb: FormBuilder, private wordService: WordService) {}
 
   ngOnInit(): void {
     this.letterForm = this.fb.group({
      value: ['', [
-       Validators.required,
-       Validators.maxLength(15)
+       Validators.required
      ]],
     similarities: this.fb.array([])
     });
-
-
-    this.letterForm.valueChanges.subscribe(data => {
-      if (data.value !== '') {
-        this.letterForm.value.value = data.value.toLowerCase();
-      }
-    });
-
-    this.trigger = true;
-
-    document.querySelector('input[formControlName="value"]').addEventListener('click', () => {
-      if (!this.trigger) {
-        this.trigger = true;
-      }
-    });
-  }
-
-  ngAfterContentInit(): void {
     this.wordService.getWordList();
   }
 
@@ -84,10 +64,6 @@ export class AppComponent implements OnInit, AfterContentInit {
     this.wordService.similarities = this.letterForm.value.similarities;
     this.letterForm.value.value = '';
     this.words = undefined;
-    this.letterForm.value.similarities = [];
-    this.similarityForms.controls = [];
-    this.letterForm.controls.value.setErrors({incorrect: true});
-    this.trigger = false;
     this.words = this.wordService.filter(regex);
   }
 
@@ -126,5 +102,4 @@ export class AppComponent implements OnInit, AfterContentInit {
   get value() {
     return this.letterForm.get('value');
   }
-
 }
