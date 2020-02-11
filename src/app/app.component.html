@@ -48,8 +48,6 @@
     </div>
   </form>
     <h2 class="text-center">Woorden: </h2>
-    <ul class="mx-auto">
-      <li class="text-monospace" *ngFor="let word of words">{{word}}</li>
-    </ul>
+    <app-list [items]="words"></app-list>
 </div>
 <app-footer></app-footer>

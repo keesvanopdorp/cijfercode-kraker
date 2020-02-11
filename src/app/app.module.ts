@@ -8,9 +8,10 @@ import { TimesPipe } from './shared/times.pipe';
 import {HttpClientModule} from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { ListComponent } from './layout/list/list.component';
 
 @NgModule({
-  declarations: [AppComponent, FooterComponent, TimesPipe],
+  declarations: [AppComponent, FooterComponent, TimesPipe, ListComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
