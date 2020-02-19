@@ -29,6 +29,7 @@ export class AppComponent implements OnInit {
   }
 
   submitHandler(): void {
+    this.letterForm.controls.value.setErrors({incorrect: true});
     console.log(this.letterForm.value);
     const str = this.letterForm.value.value;
     let count = 0;

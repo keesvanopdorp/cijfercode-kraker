@@ -19,28 +19,25 @@
           </div>
         </div>
       </div>
-      <div class="col-12" *ngIf="value.invalid && value.touched">
-        <h3 class="text-center text-danger">Je bent vergeten iets in te vullen</h3>
-      </div>
     </div>
     <h3 class="text-center my-2">Gelijkenissen: </h3>
     <div class="row" formArrayName="similarities">
       <div class="col-8 offset-2 my-2" *ngFor="let similarity of similarityForms.controls; let i =index" [formGroupName]="i">
         <div class="row">
-          <div class="col-4">
+          <div class="col-4 offset-1">
             <input type="number" min="0" [max]="letterForm.value.value.length" class="form-control" formControlName="first">
           </div>
           <div class="col-4 offset-1">
             <input type="number" min="0" [max]="letterForm.value.value.length" class="form-control" formControlName="second">
           </div>
           <div class="col-2">
-            <button type="button" class="btn btn-danger px-3" (click)="removeSimilarity(i)"><i class="fas fa-trash"></i></button>
+            <button type="button" class="btn btn-danger px-3" (click)="removeSimilarity(i);"><i class="fas fa-trash"></i></button>
           </div>
         </div>
       </div>
       <div class="col-md-4 col-sm-12 offset-md-4 offset-sm-0 mt-3">
-        <button type="button" (click)="addSimilarity()" class="btn btn-dark">Voeg gelijkenis toe</button>
-        <button type="button" class="btn btn-danger" [disabled]="this.words === undefined" (click)="resetWords()">Verwijder woorden</button>
+        <button type="button" (click)="addSimilarity()" class="btn btn-dark ml-5">Voeg gelijkenis toe</button>
+        <button type="button" class="btn btn-danger ml-5" [disabled]="this.words === undefined" (click)="resetWords()">Verwijder woorden</button>
       </div>
       <div class="col-4 offset-4 mt-5">
         <button type="submit" class="btn btn-primary btn-block" [disabled]="letterForm.invalid">Submit</button>
