@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 
 import {WordService} from './shared/word.service';
+import {HistoryItem} from './interfaces/historyItem';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,8 @@ import {WordService} from './shared/word.service';
 export class AppComponent implements OnInit {
   letterForm: FormGroup;
   words: any[];
+  history: HistoryItem[] = [];
+  showHistoryTab = false;
   constructor(private fb: FormBuilder, private wordService: WordService) {}
 
   ngOnInit(): void {
@@ -28,14 +31,19 @@ export class AppComponent implements OnInit {
     this.wordService.getWordList();
   }
 
+  // this is the submit handler for sending the data from the form to the WordService
   submitHandler(): void {
+    // sets the value control incorrect
     this.letterForm.controls.value.setErrors({incorrect: true});
-    console.log(this.letterForm.value);
+    const historyItem: HistoryItem = Object.assign({}, this.letterForm.value);
+    console.log(this.letterForm.value.value);
+    console.log(historyItem);
     const str = this.letterForm.value.value;
+    console.log(typeof str);
     let count = 0;
     let regex: string | RegExp = '^';
     let previousChar = '';
-    console.log(`string: ${str.length}`);
+    // makes the regex
     for (let i = 0; i < str.length; i++) {
       if (str.charAt(i) !== '*') {
         if (previousChar === '*' ) {
@@ -62,12 +70,18 @@ export class AppComponent implements OnInit {
     }
     regex += '$';
     regex = new RegExp(regex);
+    // sends the similarities to the WordService
     this.wordService.similarities = this.letterForm.value.similarities;
+    // clears the value of the main input
     this.letterForm.value.value = '';
     this.words = undefined;
     this.words = this.wordService.filter(regex);
+    historyItem.words = this.words;
+    this.history.push(historyItem);
+    console.log(this.history);
   }
 
+  // gets a array of the all the similarities
   get similarityForms() {
     return this.letterForm.get('similarities') as FormArray;
   }
@@ -92,15 +106,22 @@ export class AppComponent implements OnInit {
     this.similarityForms.removeAt(index);
   }
 
+  // this function clears the array of found words
   resetWords(): void {
     this.words = undefined;
   }
 
+  // this function resets the value of the main input
   resetValue(): void {
     this.letterForm.value.value = '';
   }
 
   get value() {
     return this.letterForm.get('value');
+  }
+
+  openHistoryTab() {
+    // this.showHistoryTab = !this.showHistoryTab;
+    alert('Komt binnenkort');
   }
 }

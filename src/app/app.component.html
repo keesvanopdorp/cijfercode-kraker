@@ -46,5 +46,7 @@
   </form>
     <h2 class="text-center">Woorden: </h2>
     <app-list [items]="words"></app-list>
+    <i class="fas fa-bars fa-2x menu-btn" (click)="openHistoryTab()"></i>
+    <app-history-tab [history]="this.history" *ngIf="this.showHistoryTab"></app-history-tab>
 </div>
 <app-footer></app-footer>

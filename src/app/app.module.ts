@@ -9,14 +9,17 @@ import {HttpClientModule} from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ListComponent } from './layout/list/list.component';
+import { HistoryTabComponent } from './layout/history-tab/history-tab.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
-  declarations: [AppComponent, FooterComponent, TimesPipe, ListComponent],
+  declarations: [AppComponent, FooterComponent, TimesPipe, ListComponent, HistoryTabComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxPaginationModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],
   providers: [],
   bootstrap: [AppComponent]
