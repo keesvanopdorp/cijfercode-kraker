@@ -14,7 +14,7 @@ export class FooterComponent implements OnInit {
   }
 
   getCurrentYear() {
-    let d = new Date();
+    const d = new Date();
     this.currentYear = d.getFullYear();
   }
 

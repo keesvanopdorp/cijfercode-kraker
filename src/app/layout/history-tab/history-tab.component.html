@@ -5,9 +5,13 @@
   <div class="mt-5" *ngFor="let historyItem of history">
     <h2>Zoekterm: {{historyItem.value}}</h2>
     <div class="row">
-      <div *ngFor="let word of historyItem.words; let i = index;" class="col-md-3 col-sm-6">
+      <div *ngFor="let word of historyItem.words | paginate: { itemsPerPage: 30, currentPage: p }; let i = index;" class="col-md-3 col-sm-6">
         <p>{{word}}</p>
+      </div>
+      <div class="row">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </div>
     </div>
   </div>
 </div>
+

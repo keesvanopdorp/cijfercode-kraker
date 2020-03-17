@@ -7,10 +7,13 @@ import {HistoryItem} from '../../interfaces/historyItem';
   styleUrls: ['./history-tab.component.scss']
 })
 export class HistoryTabComponent implements OnInit {
+  p: number;
   @Input() history: HistoryItem[];
-  constructor() { }
 
-  ngOnInit() {
+  constructor() {
+    this.p = 1;
   }
+
+  ngOnInit() {}
 
 }

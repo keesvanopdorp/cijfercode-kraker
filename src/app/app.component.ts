@@ -121,7 +121,7 @@ export class AppComponent implements OnInit {
   }
 
   openHistoryTab() {
-    // this.showHistoryTab = !this.showHistoryTab;
-    alert('Komt binnenkort');
+    this.showHistoryTab = !this.showHistoryTab;
+    // alert('Komt binnenkort');
   }
 }
